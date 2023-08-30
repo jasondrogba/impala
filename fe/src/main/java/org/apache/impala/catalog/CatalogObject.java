@@ -20,13 +20,13 @@ package org.apache.impala.catalog;
 import org.apache.impala.thrift.TCatalogObjectType;
 
 /**
- * Interface that all catalog objects implement.
+ * Interface that all catalog  implement.
  */
 public interface CatalogObject extends HasName {
 
   /**
-   * Catalog objects are often serialized to Thrift. When doing so, many of the
-   * objects have a minimal "descriptor" form used in query execution as well as
+   * Catalog  are often serialized to Thrift. When doing so, many of the
+   *  have a minimal "descriptor" form used in query execution as well as
    * a more complete "full" form with all information, used when transferring the
    * catalog object from catalogd to the impalads.
    */

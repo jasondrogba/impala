@@ -27,7 +27,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
 /**
- * Thread safe cache for storing CatalogObjects. Enforces that updates to existing
+ * Thread safe cache for storing Catalog. Enforces that updates to existing
  * entries only get applied if the new/updated object has a larger catalog version.
  * add() and remove() functions also update the entries of the global instance of
  * CatalogObjectVersionSet which keeps track of the catalog objects versions.

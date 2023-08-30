@@ -775,30 +775,30 @@ public class JniFrontend {
    * return an error string describing the issues.
    */
   private String checkFileSystem(Configuration conf) {
-    try {
-      FileSystem fs = FileSystem.get(CONF);
-      if (!(fs instanceof DistributedFileSystem ||
-            fs instanceof S3AFileSystem ||
-            fs instanceof AzureBlobFileSystem ||
-            fs instanceof SecureAzureBlobFileSystem ||
-            fs instanceof AdlFileSystem)) {
-        return "Currently configured default filesystem: " +
-            fs.getClass().getSimpleName() + ". " +
-            CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY +
-            " (" + CONF.get(CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY) + ")" +
-            " is not supported.";
-      }
-    } catch (IOException e) {
-      return "couldn't retrieve FileSystem:\n" + e.getMessage();
-    }
-
-    try {
-      FileSystemUtil.getTotalNumVisibleFiles(new Path("/"));
-    } catch (IOException e) {
-      return "Could not read the root directory at " +
-          CONF.get(CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY) +
-          ". Error was: \n" + e.getMessage();
-    }
+//    try {
+//      FileSystem fs = FileSystem.get(CONF);
+//      if (!(fs instanceof DistributedFileSystem ||
+//            fs instanceof S3AFileSystem ||
+//            fs instanceof AzureBlobFileSystem ||
+//            fs instanceof SecureAzureBlobFileSystem ||
+//            fs instanceof AdlFileSystem)) {
+//        return "Currently configured default filesystem: " +
+//            fs.getClass().getSimpleName() + ". " +
+//            CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY +
+//            " (" + CONF.get(CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY) + ")" +
+//            " is not supported.";
+//      }
+//    } catch (IOException e) {
+//      return "couldn't retrieve FileSystem:\n" + e.getMessage();
+//    }
+//
+//    try {
+//      FileSystemUtil.getTotalNumVisibleFiles(new Path("/"));
+//    } catch (IOException e) {
+//      return "Could not read the root directory at " +
+//          CONF.get(CommonConfigurationKeysPublic.FS_DEFAULT_NAME_KEY) +
+//          ". Error was: \n" + e.getMessage();
+//    }
     return "";
   }
 }

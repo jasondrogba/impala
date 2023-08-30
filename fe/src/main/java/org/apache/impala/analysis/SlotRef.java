@@ -19,6 +19,7 @@ package org.apache.impala.analysis;
 
 import java.util.List;
 import java.util.Set;
+import java.util.Objects;
 
 import org.apache.impala.analysis.Path.PathType;
 import org.apache.impala.catalog.FeTable;
@@ -31,7 +32,7 @@ import org.apache.impala.thrift.TExprNodeType;
 import org.apache.impala.thrift.TSlotRef;
 
 import com.google.common.base.Joiner;
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
 public class SlotRef extends Expr {
@@ -168,7 +169,7 @@ public class SlotRef extends Expr {
 
   @Override
   public String debugString() {
-    Objects.ToStringHelper toStrHelper = Objects.toStringHelper(this);
+    MoreObjects.ToStringHelper toStrHelper = MoreObjects.toStringHelper(this);
     if (label_ != null) toStrHelper.add("label", label_);
     if (rawPath_ != null) toStrHelper.add("path", Joiner.on('.').join(rawPath_));
     toStrHelper.add("type", type_.toSql());
@@ -180,7 +181,9 @@ public class SlotRef extends Expr {
   @Override
   public int hashCode() {
     if (desc_ != null) return desc_.getId().hashCode();
-    return Objects.hashCode(Joiner.on('.').join(rawPath_).toLowerCase());
+//    return MoreObjects.hashCode(Joiner.on('.').join(rawPath_).toLowerCase());
+    return Objects.hash(Joiner.on('.').join(rawPath_).toLowerCase());
+
   }
 
   @Override

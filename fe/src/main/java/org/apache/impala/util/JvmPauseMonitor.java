@@ -181,11 +181,11 @@ public class JvmPauseMonitor {
   /**
    * Runnable instance of the pause monitor loop. Launched from serviceStart().
    */
-  private class Monitor implements Runnable {
+  public class Monitor implements Runnable {
     @Override
     public void run() {
-      Stopwatch sw = new Stopwatch();
-      Stopwatch timeSinceDeadlockCheck = new Stopwatch().start();
+      Stopwatch sw = Stopwatch.createStarted();
+      Stopwatch timeSinceDeadlockCheck = Stopwatch.createStarted();
       Map<String, GcTimes> gcTimesBeforeSleep = getGcTimes();
       LOG.info("Starting JVM pause monitor");
       while (shouldRun) {
@@ -197,7 +197,7 @@ public class JvmPauseMonitor {
           return;
         }
         sw.stop();
-        long extraSleepTime = sw.elapsedTime(TimeUnit.MILLISECONDS) - SLEEP_INTERVAL_MS;
+        long extraSleepTime = sw.elapsed(TimeUnit.MILLISECONDS) - SLEEP_INTERVAL_MS;
         Map<String, GcTimes> gcTimesAfterSleep = getGcTimes();
 
         if (extraSleepTime > warnThresholdMs_) {

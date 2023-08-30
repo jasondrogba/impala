@@ -30,6 +30,7 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
+import java.nio.charset.StandardCharsets;
 
 import com.google.common.collect.ImmutableSortedMap;
 import org.apache.impala.analysis.ColumnLineageGraph.Vertex.Metadata;
@@ -761,7 +762,7 @@ public class ColumnLineageGraph {
 
   private String getQueryHash(String queryStr) {
     Hasher hasher = Hashing.md5().newHasher();
-    hasher.putString(queryStr);
+    hasher.putString(queryStr,StandardCharsets.UTF_8);
     return hasher.hash().toString();
   }
 

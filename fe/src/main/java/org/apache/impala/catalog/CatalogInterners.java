@@ -34,8 +34,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 /**
- * Static utility methods for interning various objects used in the catalog. In many
- * cases, there are common strings that show up in lots of objects (eg class names,
+ * Static utility methods for interning various  used in the catalog. In many
+ * cases, there are common strings that show up in lots of  (eg class names,
  * database names, user names, property names), and interning these strings can result
  * in significant memory savings.
  */

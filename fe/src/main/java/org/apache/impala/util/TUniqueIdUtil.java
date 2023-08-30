@@ -21,7 +21,7 @@ import org.apache.impala.thrift.TUniqueId;
 import com.google.common.primitives.UnsignedLong;
 
 /**
- * Utility functions for working with TUniqueId objects.
+ * Utility functions for working with TUniqueId .
  */
 public class TUniqueIdUtil {
   public static String PrintId(TUniqueId id) {

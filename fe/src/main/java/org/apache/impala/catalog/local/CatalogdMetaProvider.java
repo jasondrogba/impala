@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -92,7 +93,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Stopwatch;
 import com.google.common.base.Throwables;
@@ -375,7 +376,7 @@ public class CatalogdMetaProvider implements MetaProvider {
       throws TException {
     TGetPartialCatalogObjectResponse resp;
     byte[] ret = null;
-    Stopwatch sw = new Stopwatch().start();
+    Stopwatch sw = Stopwatch.createStarted();
     try {
       ret = FeSupport.GetPartialCatalogObject(new TSerializer().serialize(req));
     } catch (InternalException e) {
@@ -482,7 +483,7 @@ public class CatalogdMetaProvider implements MetaProvider {
     // NOTE: we don't need to perform this dance for cache keys which embed a version
     // number, because invalidation is not handled by removing cache entries, but
     // rather by bumping top-level version numbers.
-    Stopwatch sw = new Stopwatch().start();
+    Stopwatch sw = Stopwatch.createStarted();
     boolean hit = false;
     boolean isPiggybacked = false;
     try {
@@ -712,7 +713,7 @@ public class CatalogdMetaProvider implements MetaProvider {
   @Override
   public List<ColumnStatisticsObj> loadTableColumnStatistics(final TableMetaRef table,
       List<String> colNames) throws TException {
-    Stopwatch sw = new Stopwatch().start();
+    Stopwatch sw = Stopwatch.createStarted();
     List<ColumnStatisticsObj> ret = Lists.newArrayListWithCapacity(colNames.size());
     // Look up in cache first, keeping track of which ones are missing.
     // We can't use 'loadWithCaching' since we need to fetch several entries batched
@@ -815,7 +816,7 @@ public class CatalogdMetaProvider implements MetaProvider {
       throws MetaException, TException {
     Preconditions.checkArgument(table instanceof TableMetaRefImpl);
     TableMetaRefImpl refImpl = (TableMetaRefImpl)table;
-    Stopwatch sw = new Stopwatch().start();
+    Stopwatch sw = Stopwatch.createStarted();
     // Load what we can from the cache.
     Map<PartitionRef, PartitionMetadata> refToMeta = loadPartitionsFromCache(refImpl,
         hostIndex, partitionRefs);
@@ -1440,7 +1441,7 @@ public class CatalogdMetaProvider implements MetaProvider {
 
     @Override
     public int hashCode() {
-      return Objects.hashCode(dbName_, childName_, getClass());
+      return Objects.hash(dbName_, childName_, getClass());
     }
     @Override
     public boolean equals(Object obj) {
@@ -1496,7 +1497,7 @@ public class CatalogdMetaProvider implements MetaProvider {
 
     @Override
     public int hashCode() {
-      return Objects.hashCode(super.hashCode(), version_);
+      return Objects.hash(super.hashCode(), version_);
     }
 
     @Override
@@ -1524,7 +1525,7 @@ public class CatalogdMetaProvider implements MetaProvider {
 
     @Override
     public int hashCode() {
-      return Objects.hashCode(super.hashCode(), colName_);
+      return Objects.hash(super.hashCode(), colName_);
     }
 
     @Override
@@ -1569,7 +1570,7 @@ public class CatalogdMetaProvider implements MetaProvider {
 
     @Override
     public int hashCode() {
-      return Objects.hashCode(super.hashCode(), partId_);
+      return Objects.hash(super.hashCode(), partId_);
     }
 
     @Override
@@ -1604,7 +1605,7 @@ public class CatalogdMetaProvider implements MetaProvider {
 
     @Override
     public int hashCode() {
-      return Objects.hashCode(getClass(), dbName_, type_);
+      return Objects.hash(getClass(), dbName_, type_);
     }
 
     @Override
