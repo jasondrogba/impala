@@ -58,9 +58,11 @@ public class SentryAuthorizationFactory implements AuthorizationFactory {
 
   private static AuthorizationConfig newAuthorizationConfig(BackendConfig backendConfig) {
     String serverName = backendConfig.getBackendCfg().getServer_name();
-    String sentryConfigFile = backendConfig.getBackendCfg().getSentry_config();
-    String policyProviderClassName = backendConfig.getBackendCfg()
-        .getAuthorization_policy_provider_class();
+//    String sentryConfigFile = backendConfig.getBackendCfg().getSentry_config();
+    String sentryConfigFile = "";
+//    String policyProviderClassName = backendConfig.getBackendCfg()
+//        .getAuthorization_policy_provider_class();
+    String policyProviderClassName = "org.apache.impala.authorization.sentry.SentryAuthorizationFactory";
     // The logic for creating Sentry authorization config is inconsistent between
     // catalogd and impalad. In catalogd, only --sentry_config flag is required to enable
     // authorization. In impalad, --server_name and --sentry_config are required.

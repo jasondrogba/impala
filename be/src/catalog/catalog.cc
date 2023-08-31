@@ -28,7 +28,6 @@
 
 using namespace impala;
 
-
 DEFINE_bool(load_catalog_in_background, false,
     "If true, loads catalog metadata in the background. If false, metadata is loaded "
     "lazily (on access).");

@@ -406,6 +406,22 @@ public class FileSystemUtil {
   public static boolean isOzoneFileSystem(Path path) throws IOException {
     return isOzoneFileSystem(path.getFileSystem(CONF));
   }
+  /**
+   * Returns true iff the filesystem is a AlluxioFileSystem.
+   */
+  public static boolean isAlluxioFileSystem(FileSystem fs) {
+    // TODO once CDP becomes the default build version, this check can directly use
+    // org.apache.hadoop.fs.alluxio.AlluxioFileSystem, similar to the rest of the
+    // is*FileSystem() methods.
+    return fs.getUri().getScheme().equals("alluxio");
+  }
+
+  /**
+   * Returns true iff the path is on AlluxioFileSystem.
+   */
+  public static boolean isAlluxioFileSystem(Path path) throws IOException {
+    return isAlluxioFileSystem(path.getFileSystem(CONF));
+  }
 
   /**
    * Represents the type of filesystem being used. Typically associated with a
@@ -424,7 +440,8 @@ public class FileSystemUtil {
     HDFS,
     LOCAL,
     S3,
-    OZONE;
+    OZONE,
+    ALLUXIO;
 
     private static final Map<String, FsType> SCHEME_TO_FS_MAPPING =
         ImmutableMap.<String, FsType>builder()
@@ -435,6 +452,7 @@ public class FileSystemUtil {
             .put("hdfs", HDFS)
             .put("s3a", S3)
             .put("o3fs", OZONE)
+                .put("alluxio",ALLUXIO)
             .build();
 
     /**
@@ -551,7 +569,8 @@ public class FileSystemUtil {
         FileSystemUtil.isS3AFileSystem(path) ||
         FileSystemUtil.isABFSFileSystem(path) ||
         FileSystemUtil.isADLFileSystem(path) ||
-        FileSystemUtil.isOzoneFileSystem(path));
+        FileSystemUtil.isOzoneFileSystem(path) ||
+            FileSystemUtil.isAlluxioFileSystem(path));
   }
 
   /**

@@ -25,6 +25,7 @@ import org.apache.impala.common.InternalException;
 import org.apache.impala.service.BackendConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+//import org.apache.impala.authorization.sentry.SentryAuthorizationFactory;
 
 public class AuthorizationUtil {
   private final static Logger LOG = LoggerFactory.getLogger(AuthorizationUtil.class);
@@ -44,21 +45,22 @@ public class AuthorizationUtil {
       throws InternalException {
     final String authzFactoryClassOption = beCfg.getAuthorizationFactoryClass();
     final String authzFactoryClassName;
-    if (authzFactoryClassOption != null) {
-      // authorization_factory_class takes precedence
-      authzFactoryClassName = authzFactoryClassOption;
-    } else {
-      // use authorization_provider flag
-      final String authzProvider = beCfg.getAuthorizationProvider();
-      try {
-        final AuthorizationProvider provider = AuthorizationProvider.valueOf(
-            authzProvider.toUpperCase().trim());
-        authzFactoryClassName = provider.getAuthorizationFactoryClassName();
-      } catch (Exception e) {
-        throw new InternalException(
-            "Could not parse authorization_provider flag: " + authzProvider);
-      }
-    }
+//    if (authzFactoryClassOption != null) {
+//      // authorization_factory_class takes precedence
+//      authzFactoryClassName = authzFactoryClassOption;
+//    } else {
+//      // use authorization_provider flag
+//      final String authzProvider = beCfg.getAuthorizationProvider();
+//      try {
+//        final AuthorizationProvider provider = AuthorizationProvider.valueOf(
+//            authzProvider.toUpperCase().trim());
+//        authzFactoryClassName = provider.getAuthorizationFactoryClassName();
+//      } catch (Exception e) {
+//        throw new InternalException(
+//            "Could not parse authorization_provider flag: " + authzProvider);
+//      }
+//    }
+    authzFactoryClassName = "org.apache.impala.authorization.sentry.SentryAuthorizationFactory";
     return authzFactoryClassName;
   }
 
@@ -74,6 +76,8 @@ public class AuthorizationUtil {
    */
   public static AuthorizationFactory authzFactoryFrom(BackendConfig beCfg)
       throws InternalException {
+//    final SentryAuthorizationFactory authzFactory;
+
     final AuthorizationFactory authzFactory;
     final String authzFactoryClassName = authzFactoryClassNameFrom(beCfg);
     try {

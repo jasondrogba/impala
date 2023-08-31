@@ -38,7 +38,8 @@ using namespace impala;
 // Authorization related flags. Must be set to valid values to properly configure
 // authorization.
 DEFINE_string(authorization_provider,
-    "sentry",
+//    "sentry",
+    "",
     "Specifies the type of internally-provided authorization provider to use. "
     "['ranger', 'sentry' (default)]");
 DEFINE_string(authorization_factory_class,
