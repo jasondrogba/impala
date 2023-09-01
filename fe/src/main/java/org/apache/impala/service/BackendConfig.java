@@ -207,58 +207,106 @@ public class BackendConfig {
   }
 
   public void setRowFilteringEnabled(boolean rowFilteringEnabled) {
-    backendCfg_.setEnable_row_filtering(rowFilteringEnabled);
+//    backendCfg_.setEnable_row_filtering(rowFilteringEnabled);
   }
 
   public boolean isColumnMaskingEnabled() { return backendCfg_.enable_column_masking; }
-  public boolean isRowFilteringEnabled() { return backendCfg_.enable_row_filtering; }
+  public boolean isRowFilteringEnabled() {
+//    return backendCfg_.enable_row_filtering;
+  return true;
+  }
 
   public boolean isCompactCatalogTopic() { return backendCfg_.compact_catalog_topic; }
 
   public boolean isIncrementalMetadataUpdatesEnabled() {
-    return backendCfg_.enable_incremental_metadata_updates;
+
+//    return backendCfg_.enable_incremental_metadata_updates;
+    return true;
   }
 
-  public String getSaml2KeystorePath() { return backendCfg_.saml2_keystore_path; }
+  public String getSaml2KeystorePath() {
+
+//    return backendCfg_.saml2_keystore_path;
+  return "";
+  }
 
   public String getSaml2KeystorePassword() {
-    return backendCfg_.saml2_keystore_password;
+
+//    return backendCfg_.saml2_keystore_password;
+    return "";
   }
 
   public String getSaml2PrivateKeyPassword() {
-    return backendCfg_.saml2_private_key_password;
+
+//    return backendCfg_.saml2_private_key_password;
+    return "";
   }
 
-  public String getSaml2IdpMetadata() { return backendCfg_.saml2_idp_metadata; }
+  public String getSaml2IdpMetadata() {
 
-  public String getSaml2SpEntityId() { return backendCfg_.saml2_sp_entity_id; }
+//    return backendCfg_.saml2_idp_metadata;
+    return "";
+  }
 
-  public String getSaml2SpCallbackUrl() { return backendCfg_.saml2_sp_callback_url; }
+  public String getSaml2SpEntityId() {
+
+//    return backendCfg_.saml2_sp_entity_id;
+    return "";
+  }
+
+  public String getSaml2SpCallbackUrl() {
+
+//    return backendCfg_.saml2_sp_callback_url;
+  return "";
+  }
 
   public boolean getSaml2WantAsserationsSigned() {
-    return backendCfg_.saml2_want_assertations_signed;
+
+//    return backendCfg_.saml2_want_assertations_signed;
+    return false;
   }
 
-  public boolean getSaml2SignRequest() { return backendCfg_.saml2_sign_requests; }
+  public boolean getSaml2SignRequest() {
+
+//    return backendCfg_.saml2_sign_requests;
+  return false;
+  }
 
   public int getSaml2CallbackTokenTtl() {
-    return backendCfg_.saml2_callback_token_ttl;
+
+//    return backendCfg_.saml2_callback_token_ttl;
+  return 30000;
   }
 
-  public String getSaml2GroupAttibuteName() { return backendCfg_.saml2_group_attribute_name; }
+  public String getSaml2GroupAttibuteName() {
 
-  public String getSaml2GroupFilter() { return backendCfg_.saml2_group_filter; }
+//    return backendCfg_.saml2_group_attribute_name;
+  return "";
+  }
 
-  public boolean getSaml2EETestMode() { return backendCfg_.saml2_ee_test_mode; }
+  public String getSaml2GroupFilter() {
 
-  public String getScratchDirs() { return backendCfg_.scratch_dirs; }
+//    return backendCfg_.saml2_group_filter;
+  return "";
+  }
+
+  public boolean getSaml2EETestMode() {
+//    return backendCfg_.saml2_ee_test_mode;
+  return false;
+  }
+
+  public String getScratchDirs() {
+//    return backendCfg_.scratch_dirs;
+  return "";
+  }
 
   public boolean getAllowOrdinalsInHaving() {
-    return backendCfg_.allow_ordinals_in_having;
+//    return backendCfg_.allow_ordinals_in_having;
+    return false;
   }
 
   public void setAllowOrdinalsInHaving(boolean allow_ordinals_in_having) {
-    backendCfg_.allow_ordinals_in_having = allow_ordinals_in_having;
+//    backendCfg_.allow_ordinals_in_having = allow_ordinals_in_having;
   }
 
   // Inits the auth_to_local configuration in the static KerberosName class.
@@ -286,6 +334,8 @@ public class BackendConfig {
   }
 
   public int getMaxWaitTimeForSyncDdlSecs() {
-    return backendCfg_.max_wait_time_for_sync_ddl_s;
+
+//    return backendCfg_.max_wait_time_for_sync_ddl_s;
+  return 0;
   }
 }

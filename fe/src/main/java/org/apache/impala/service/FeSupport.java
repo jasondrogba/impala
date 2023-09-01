@@ -74,6 +74,7 @@ public class FeSupport {
   // Only called if this library is explicitly loaded. This happens
   // when running FE tests or external FE
   public native static void NativeFeInit(boolean externalFE);
+  public native static void NativeFeTestInit();
 
   // Returns a serialized TResultRow
   public native static byte[] NativeEvalExprsWithoutRow(
@@ -88,7 +89,7 @@ public class FeSupport {
   // Adds a topic item to the backend's pending metadata-topic update.
   // 'serializationBuffer' is a serialized TCatalogObject.
   // Returns the actual value size and -1 if the operation fails.
-  public native static int NativeAddPendingTopicItem(long nativeCatalogServerPtr,
+  public native static boolean NativeAddPendingTopicItem(long nativeCatalogServerPtr,
       String key, long version, byte[] serializationBuffer, boolean deleted);
 
   // Get a catalog object update from the backend. A pair of isDeletion flag and

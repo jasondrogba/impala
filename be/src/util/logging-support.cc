@@ -103,7 +103,8 @@ void InitDynamicLoggingSupport() {
   ABORT_IF_ERROR(JniUtil::GetGlobalClassRef(env, "org/apache/impala/util/GlogAppender",
         &log4j_logger_class_));
   JniMethodDescriptor get_log_levels_method_desc =
-      {"getLogLevels", "()[B", &get_log_levels_method};
+//      {"getLogLevels", "()[B", &get_log_levels_method};
+      {"getLogLevel", "([B)Ljava/lang/String;", &get_log_levels_method};
   JniMethodDescriptor set_log_level_method_desc =
       {"setLogLevel", "([B)Ljava/lang/String;", &set_log_level_method};
   JniMethodDescriptor reset_log_level_method_desc =

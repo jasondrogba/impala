@@ -167,7 +167,7 @@ public class GlogAppender extends AppenderSkeleton {
   /**
    * Get all the previously set log4j log levels.
    */
-  public static byte[] getLogLevels() throws ImpalaException {
+  public static String getLogLevel(byte[] serializedParams) throws ImpalaException {
     Enumeration<Logger> allLoggers = LogManager.getCurrentLoggers();
     List<String> logLevels = new ArrayList<String>();
 
@@ -181,6 +181,12 @@ public class GlogAppender extends AppenderSkeleton {
     TGetJavaLogLevelsResult result = new TGetJavaLogLevelsResult();
     result.setLog_levels(logLevels);
 
-    return JniUtil.serializeToThrift(result, protocolFactory_);
+//    return JniUtil.serializeToThrift(result, protocolFactory_);
+
+//    TGetJavaLogLevelParams thriftParams = new TGetJavaLogLevelParams();
+//    JniUtil.deserializeThrift(protocolFactory_, thriftParams, serializedParams);
+//    String className = thriftParams.getClass_name();
+//    if (Strings.isNullOrEmpty(className)) return null;
+    return Logger.getLogger("className").getEffectiveLevel().toString();
   }
 };

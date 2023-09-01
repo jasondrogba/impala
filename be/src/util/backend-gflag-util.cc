@@ -257,34 +257,34 @@ Status PopulateThriftBackendGflags(TBackendGflags& cfg) {
   cfg.__set_use_customized_user_groups_mapper_for_ranger(
       FLAGS_use_customized_user_groups_mapper_for_ranger);
   cfg.__set_enable_column_masking(FLAGS_enable_column_masking);
-  cfg.__set_enable_row_filtering(FLAGS_enable_row_filtering);
+//  cfg.__set_enable_row_filtering(FLAGS_enable_row_filtering);
   cfg.__set_compact_catalog_topic(FLAGS_compact_catalog_topic);
-  cfg.__set_enable_incremental_metadata_updates(
-      FLAGS_enable_incremental_metadata_updates);
-  cfg.__set_topic_update_tbl_max_wait_time_ms(FLAGS_topic_update_tbl_max_wait_time_ms);
-  cfg.__set_catalog_max_lock_skipped_topic_updates(
-      FLAGS_catalog_max_lock_skipped_topic_updates);
-  cfg.__set_saml2_keystore_path(FLAGS_saml2_keystore_path);
-  string saml2_keystore_password;
-  RETURN_IF_ERROR(GetConfigFromCommand(
-      FLAGS_saml2_keystore_password_cmd, saml2_keystore_password));
-  cfg.__set_saml2_keystore_password(saml2_keystore_password);
-  string saml2_private_key_password;
-  RETURN_IF_ERROR(GetConfigFromCommand(
-      FLAGS_saml2_private_key_password_cmd,saml2_private_key_password));
-  cfg.__set_saml2_private_key_password(saml2_private_key_password);
-  cfg.__set_saml2_idp_metadata(FLAGS_saml2_idp_metadata);
-  cfg.__set_saml2_sp_entity_id(FLAGS_saml2_sp_entity_id);
-  cfg.__set_saml2_sp_callback_url(FLAGS_saml2_sp_callback_url);
-  cfg.__set_saml2_want_assertations_signed(FLAGS_saml2_want_assertations_signed);
-  cfg.__set_saml2_sign_requests(FLAGS_saml2_sign_requests);
-  cfg.__set_saml2_callback_token_ttl(FLAGS_saml2_callback_token_ttl);
-  cfg.__set_saml2_group_attribute_name(FLAGS_saml2_group_attribute_name);
-  cfg.__set_saml2_group_filter(FLAGS_saml2_group_filter);
-  cfg.__set_saml2_ee_test_mode(FLAGS_saml2_ee_test_mode);
-  cfg.__set_scratch_dirs(FLAGS_scratch_dirs);
-  cfg.__set_max_wait_time_for_sync_ddl_s(FLAGS_max_wait_time_for_sync_ddl_s);
-  cfg.__set_allow_ordinals_in_having(FLAGS_allow_ordinals_in_having);
+//  cfg.__set_enable_incremental_metadata_updates(
+//      FLAGS_enable_incremental_metadata_updates);
+//  cfg.__set_topic_update_tbl_max_wait_time_ms(FLAGS_topic_update_tbl_max_wait_time_ms);
+//  cfg.__set_catalog_max_lock_skipped_topic_updates(
+//      FLAGS_catalog_max_lock_skipped_topic_updates);
+//  cfg.__set_saml2_keystore_path(FLAGS_saml2_keystore_path);
+//  string saml2_keystore_password;
+//  RETURN_IF_ERROR(GetConfigFromCommand(
+//      FLAGS_saml2_keystore_password_cmd, saml2_keystore_password));
+//  cfg.__set_saml2_keystore_password(saml2_keystore_password);
+//  string saml2_private_key_password;
+//  RETURN_IF_ERROR(GetConfigFromCommand(
+//      FLAGS_saml2_private_key_password_cmd,saml2_private_key_password));
+//  cfg.__set_saml2_private_key_password(saml2_private_key_password);
+//  cfg.__set_saml2_idp_metadata(FLAGS_saml2_idp_metadata);
+//  cfg.__set_saml2_sp_entity_id(FLAGS_saml2_sp_entity_id);
+//  cfg.__set_saml2_sp_callback_url(FLAGS_saml2_sp_callback_url);
+//  cfg.__set_saml2_want_assertations_signed(FLAGS_saml2_want_assertations_signed);
+//  cfg.__set_saml2_sign_requests(FLAGS_saml2_sign_requests);
+//  cfg.__set_saml2_callback_token_ttl(FLAGS_saml2_callback_token_ttl);
+//  cfg.__set_saml2_group_attribute_name(FLAGS_saml2_group_attribute_name);
+//  cfg.__set_saml2_group_filter(FLAGS_saml2_group_filter);
+//  cfg.__set_saml2_ee_test_mode(FLAGS_saml2_ee_test_mode);
+//  cfg.__set_scratch_dirs(FLAGS_scratch_dirs);
+//  cfg.__set_max_wait_time_for_sync_ddl_s(FLAGS_max_wait_time_for_sync_ddl_s);
+//  cfg.__set_allow_ordinals_in_having(FLAGS_allow_ordinals_in_having);
   return Status::OK();
 }
 

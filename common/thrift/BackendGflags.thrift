@@ -160,41 +160,41 @@ struct TBackendGflags {
 
   68: required bool compact_catalog_topic
 
-  69: required bool enable_incremental_metadata_updates
+  // REMOVED: 69: required bool enable_incremental_metadata_updates
 
-  70: required i64 topic_update_tbl_max_wait_time_ms
+  // REMOVED: 70: required i64 topic_update_tbl_max_wait_time_ms
 
-  71: required i32 catalog_max_lock_skipped_topic_updates
+  // REMOVED: 71: required i32 catalog_max_lock_skipped_topic_updates
 
-  72: required string saml2_keystore_path
+  // REMOVED: 72: required string saml2_keystore_path
 
-  73: required string saml2_keystore_password
+  // REMOVED: 73: required string saml2_keystore_password
 
-  74: required string saml2_private_key_password
+  // REMOVED: 74: required string saml2_private_key_password
 
-  75: required string saml2_idp_metadata
+  // REMOVED: 75: required string saml2_idp_metadata
 
-  76: required string saml2_sp_entity_id
+  // REMOVED: 76: required string saml2_sp_entity_id
 
-  77: required string saml2_sp_callback_url
+  // REMOVED: 77: required string saml2_sp_callback_url
 
-  78: required bool saml2_want_assertations_signed
+  // REMOVED: 78: required bool saml2_want_assertations_signed
 
-  79: required bool saml2_sign_requests
+  // REMOVED: 79: required bool saml2_sign_requests
 
-  80: required i32 saml2_callback_token_ttl
+  // REMOVED: 80: required i32 saml2_callback_token_ttl
 
-  81: required string saml2_group_attribute_name
+  // REMOVED: 81: required string saml2_group_attribute_name
 
-  82: required string saml2_group_filter
+  // REMOVED: 82: required string saml2_group_filter
 
-  83: required bool saml2_ee_test_mode
+  // REMOVED: 83: required bool saml2_ee_test_mode
 
-  84: required string scratch_dirs
+  // REMOVED: 84: required string scratch_dirs
 
-  85: required bool enable_row_filtering
+  // REMOVED: 85: required bool enable_row_filtering
 
-  86: required i32 max_wait_time_for_sync_ddl_s
+  // REMOVED: 86: required i32 max_wait_time_for_sync_ddl_s
 
-  87: required bool allow_ordinals_in_having
+  // REMOVED: 87: required bool allow_ordinals_in_having
 }

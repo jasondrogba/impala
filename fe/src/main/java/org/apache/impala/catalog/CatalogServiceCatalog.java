@@ -318,12 +318,14 @@ public class CatalogServiceCatalog extends Catalog {
         BackendConfig.INSTANCE.getBlacklistedDbs(), LOG);
     blacklistedTables_ = CatalogBlacklistUtils.parseBlacklistedTables(
         BackendConfig.INSTANCE.getBlacklistedTables(), LOG);
-    maxSkippedUpdatesLockContention_ = BackendConfig.INSTANCE
-        .getBackendCfg().catalog_max_lock_skipped_topic_updates;
+//    maxSkippedUpdatesLockContention_ = BackendConfig.INSTANCE
+//        .getBackendCfg().catalog_max_lock_skipped_topic_updates;
+    maxSkippedUpdatesLockContention_ = 3;
     Preconditions.checkState(maxSkippedUpdatesLockContention_ > 0,
         "catalog_max_lock_skipped_topic_updates must be positive");
-    topicUpdateTblLockMaxWaitTimeMs_ = BackendConfig.INSTANCE
-        .getBackendCfg().topic_update_tbl_max_wait_time_ms;
+//    topicUpdateTblLockMaxWaitTimeMs_ = BackendConfig.INSTANCE
+//        .getBackendCfg().topic_update_tbl_max_wait_time_ms;
+    topicUpdateTblLockMaxWaitTimeMs_= 120000;
     Preconditions.checkState(topicUpdateTblLockMaxWaitTimeMs_ >= 0,
         "topic_update_tbl_max_wait_time_ms must be positive");
     catalogServiceId_ = catalogServiceId;
@@ -728,14 +730,14 @@ public class CatalogServiceCatalog extends Catalog {
       if (topicMode_ == TopicMode.FULL || topicMode_ == TopicMode.MIXED) {
         String v1Key = CatalogServiceConstants.CATALOG_TOPIC_V1_PREFIX + key;
         byte[] data = serializer.serialize(obj);
-        int actualSize = FeSupport.NativeAddPendingTopicItem(nativeCatalogServerPtr,
+        boolean actualSize = FeSupport.NativeAddPendingTopicItem(nativeCatalogServerPtr,
             v1Key, obj.catalog_version, data, delete);
-        if (actualSize < 0) {
+        if (!actualSize) {
           LOG.error("NativeAddPendingTopicItem failed in BE. key=" + v1Key + ", delete="
               + delete + ", data_size=" + data.length);
         } else if (summary != null && obj.type == HDFS_PARTITION) {
           summary.update(true, delete, obj.hdfs_partition.partition_name,
-              obj.catalog_version, data.length, actualSize);
+              obj.catalog_version, data.length, 1);
         }
       }
 
@@ -747,14 +749,14 @@ public class CatalogServiceCatalog extends Catalog {
         if (minimalObject != null) {
           byte[] data = serializer.serialize(minimalObject);
           String v2Key = CatalogServiceConstants.CATALOG_TOPIC_V2_PREFIX + key;
-          int actualSize = FeSupport.NativeAddPendingTopicItem(nativeCatalogServerPtr,
+          boolean actualSize = FeSupport.NativeAddPendingTopicItem(nativeCatalogServerPtr,
               v2Key, obj.catalog_version, data, delete);
-          if (actualSize < 0) {
+          if (!actualSize) {
             LOG.error("NativeAddPendingTopicItem failed in BE. key=" + v2Key + ", delete="
                 + delete + ", data_size=" + data.length);
           } else if (summary != null && obj.type == HDFS_PARTITION) {
             summary.update(false, delete, obj.hdfs_partition.partition_name,
-                obj.catalog_version, data.length, actualSize);
+                obj.catalog_version, data.length, 1);
           }
         }
       }
